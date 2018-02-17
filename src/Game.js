@@ -14,7 +14,7 @@ export default class Game extends Component {
         return (
             <div className={gameClasses}>
                 <div className="game-board">
-                    <Board onBombed={this.handleBombed}/>
+                    <Board onBombed={this.handleBombed} isRevealed={youLose}/>
                 </div>
 
                 <div className="game-info">
