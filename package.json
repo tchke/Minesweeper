@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "lodash.isfunction": "^3.0.9",
     "react": "^16.1.1",
     "react-dom": "^16.1.1"
   }

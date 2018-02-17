@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import Square from './Square';
 import Repeat from './Repeat';
+import isFunction from 'lodash.isfunction';
 
 export default class Board extends Component {
-    renderSquare(i, has = false) {
-        return <Square has={has}/>;
-    }
-
     render() {
         return (
             <div>
@@ -14,9 +11,9 @@ export default class Board extends Component {
                     {
                         (i) => { 
                             return (
-                                <div className="board-row">
+                                <div className="board-row" key={i}>
                                     <Repeat>
-                                        { (i) => this.renderSquare(i) }
+                                        { (i) => this.renderSquare(i, true) }
                                     </Repeat>
                                 </div>
                             )
@@ -26,5 +23,14 @@ export default class Board extends Component {
                 </Repeat>
             </div>
         );
+    }
+
+    renderSquare(i, has = false) {
+        return <Square has={has} onClick={this.handleOpen} key={i}/>;
+    }
+
+    handleOpen = (hasBomb) => {
+        const { onBombed } = this.props;
+        hasBomb && isFunction(onBombed) && onBombed();
     }
 }

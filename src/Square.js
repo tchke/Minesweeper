@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import isFunction from 'lodash.isfunction';
 
 export default class Square extends Component {
     constructor(props){
@@ -7,7 +8,9 @@ export default class Square extends Component {
         this.state = {};
     }
     handleClick = (e) => {
+        const { onClick, has } = this.props;
         this.setState({exposed: true});
+        isFunction(onClick) && onClick(has);
     }
 
     render() {
