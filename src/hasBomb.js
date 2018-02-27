@@ -7,9 +7,3 @@ export function createHasBomb(bombs) {
 }
 
 export default createHasBomb(bombMap);
-
-// export function hasBomb(i, j) {
-//     return true;//!!bombMap[i][j];
-// }
-
-//export { hasBomb };
