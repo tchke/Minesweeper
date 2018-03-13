@@ -3,6 +3,7 @@ import Square from './Square';
 import Repeat from './Repeat';
 import isFunction from 'lodash.isfunction';
 import hasBomb from './hasBomb';
+import getBombCountAroundOf from './getBombCountAroundOf';
 
 export default class Board extends Component {
     render() {
@@ -16,7 +17,7 @@ export default class Board extends Component {
                             return (
                                 <div className="board-row" key={j}>
                                     <Repeat>
-                                        { (i) => this.renderSquare(i, hasBomb(j, i), isRevealed) }
+                                        { (i) => this.renderSquare(i, hasBomb(j, i), isRevealed, getBombCountAroundOf(i,j)) }
                                     </Repeat>
                                 </div>
                             )
@@ -28,8 +29,13 @@ export default class Board extends Component {
         );
     }
 
-    renderSquare(i, hasBomb, isRevealed) {
-        return <Square has={hasBomb} isRevealed={isRevealed} onClick={this.handleOpen} key={i}/>;
+    renderSquare(i, hasBomb, isRevealed, count) {
+        return <Square 
+                    has={hasBomb} 
+                    count={count}
+                    renderRevealed={isRevealed} 
+                    onClick={this.handleOpen} 
+                    key={i}/>;
     }
 
     handleOpen = (hasBomb) => {

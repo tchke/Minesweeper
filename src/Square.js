@@ -14,13 +14,14 @@ export default class Square extends Component {
     }
 
     render() {
-        const { has, isRevealed } = this.props;
+        const { has, renderRevealed, count } = this.props;
         const name = has ? 'red' : 'grey';
         const { exposed } = this.state;
-        const className = classNames('square', { [`${name}`]: exposed || isRevealed })
+        const isRevealed = exposed || renderRevealed;
+        const className = classNames('square', { [`${name}`]: isRevealed })
         return (
             <button className={className} onClick={this.handleClick}>
-                {/* TODO */}
+                { isRevealed && count }
             </button>
         );
     }
